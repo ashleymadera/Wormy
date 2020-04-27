@@ -80,6 +80,8 @@ _**Wormy** is a bookworms best friend. Search for Hundreds of titles, receive da
 |    API     | Quality Docs? | Website       | Sample Query                            |
 | :--------: | :-----------: | :------------ | :-------------------------------------- |
 |Good Read| yes | _https://www.goodreads.com/api/documentation_ | _https://www.goodreads.com/search.xml?key=ybeFDV188bV1sTPf7xemw&q=Ender%27s+Game_ |
+|New York Times| yes | _https://developer.nytimes.com/?it=a_ | _https://api.nytimes.com/svc/books/v3/lists/overview/.json?api-key=sJ7v7xRwG0tQ9Z3wxgHJVmvRqPeKrIea_ |
+
 
 <br>
 
