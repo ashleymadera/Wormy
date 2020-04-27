@@ -31,15 +31,15 @@ _**Wormy** is a bookworms best friend. Search for Hundreds of titles, receive da
 ### Wireframes
 
 
-![Mobile](https://imgur.com/a/2WGJyDf)
+![Mobile](https://i.imgur.com/jUEO5Jr.png)
 
 - Mobile View
 
-![iPad](https://imgur.com/a/swhUJHy)
+![iPad](https://i.imgur.com/Gy2k3sz.png)
 
 - iPad View Body
 
-![Desktop](https://imgur.com/sQLzXYr)
+![Desktop](https://i.imgur.com/sQLzXYr.png)
 
 - Desktop View
 
