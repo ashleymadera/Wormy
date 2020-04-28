@@ -4,6 +4,7 @@ import { Route, Redirect } from 'react-router-dom'
 import convert from 'xml-js'
 import BestSeller from './components/BestSeller';
 import SearchList from './components/SearchList';
+import Details from './components/Details'
 
 
 function App() {
@@ -77,13 +78,19 @@ function App() {
 
       <div>
         <Route path='/'>
-          {results ? <Redirect to='/searchlist' /> : <  Route path='/' />}
+          {results.length && <Redirect to='/searchlist' />}
         </Route>
 
 
         <Route path='/searchlist'>
           <SearchList results={results} />
         </Route>
+
+        <Route path="/Details/:index" component={Details} >
+          <Details results={results} />
+        </Route>
+
+
       </div>
     </>
   );
