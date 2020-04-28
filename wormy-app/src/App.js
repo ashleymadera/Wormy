@@ -8,28 +8,35 @@ import BestSeller from './components/BestSeller';
 
 function App() {
 
-
-
-  // api call for book seeach
-  useEffect(() => {
-    const apiCall = async () => {
-      const response = await axios(`https://corsanywhere.herokuapp.com/https://www.goodreads.com/search.xml?key=ybeFDV188bV1sTPf7xemw&q=${input}`)
-
-      console.log(response)
-      const resJSON = convert.xml2json(response.data, { compact: true, spaces: 4 })
-      console.log(JSON.parse(resJSON))
-    }
-
-  }, [])
-
-
   const [input, setInput] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    alert(`Submitting Name ${input}`)
-    apiCall()
+  // const [results, setResults] = useState([])
+
+  // api call for book seeach
+
+  const apiCall = async (e) => {
+    e.preventDefault()
+    const response = await axios(`https://corsanywhere.herokuapp.com/https://www.goodreads.com/search.xml?key=ybeFDV188bV1sTPf7xemw&q=${input}`)
+
+    console.log(response)
+    const resJSON = convert.xml2json(response.data, { compact: true, spaces: 4 })
+    console.log(JSON.parse(resJSON))
+    const parseRes = JSON.parse(resJSON)
+
+    // setResults(parseRes.GoodreadsResponse.search.results.work[0])
+
+    // console.log(results)
+
+    const bookName = parseRes.GoodreadsResponse.search.results.work[0].best_book.title._text
+    console.log(bookName)
+
   }
+
+
+  // const addPlus = string => {
+  //   newKeyword = string
+  // }
+
 
 
   // const apiCallBest = async () => {
@@ -52,19 +59,17 @@ function App() {
       <div>
 
       </div>
-      <form onSubmit={handleSubmit}>
-        <label>
-          <input
-            type="text"
-            placeholder="Search"
-            value={input}
-            onChange={e => setInput(e.target.value)}
-          />
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
+      <form >
 
-      <div></div>
+        <input
+          type="text"
+          placeholder="Search"
+          value={input}
+          onChange={e => setInput(e.target.value)}
+        >
+        </input>
+        <button onClick={apiCall}>Go</button>
+      </form>
 
       <div>
         <h1>Daily Read</h1>
