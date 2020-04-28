@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios'
-import { Route } from 'react-router-dom'
+import { Route, Redirect } from 'react-router-dom'
 import convert from 'xml-js'
 import BestSeller from './components/BestSeller';
-
+import SearchList from './components/SearchList';
 
 
 function App() {
 
   const [input, setInput] = useState("");
 
-  // const [results, setResults] = useState([])
+  const [results, setResults] = useState([])
 
-  // api call for book seeach
+  // api call for book search
 
   const apiCall = async (e) => {
     e.preventDefault()
@@ -23,12 +23,12 @@ function App() {
     console.log(JSON.parse(resJSON))
     const parseRes = JSON.parse(resJSON)
 
-    // setResults(parseRes.GoodreadsResponse.search.results.work[0])
+    setResults(parseRes.GoodreadsResponse.search.results.work)
 
-    // console.log(results)
+    console.log(results)
 
-    const bookName = parseRes.GoodreadsResponse.search.results.work[0].best_book.title._text
-    console.log(bookName)
+    // const bookName = parseRes.GoodreadsResponse.search.results.work[0].best_book.title._text
+    // console.log(bookName)
 
   }
 
@@ -76,10 +76,13 @@ function App() {
       </div>
 
       <div>
-
-
         <Route path='/'>
-          <BestSeller />
+          {results ? <Redirect to='/searchlist' /> : <  Route path='/' />}
+        </Route>
+
+
+        <Route path='/searchlist'>
+          <SearchList results={results} />
         </Route>
       </div>
     </>
