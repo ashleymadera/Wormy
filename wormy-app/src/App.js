@@ -5,48 +5,40 @@ import convert from 'xml-js'
 import BestSeller from './components/BestSeller';
 import SearchList from './components/SearchList';
 import Details from './components/Details'
+import DailyRead from './components/DailyRead';
 
 
 function App() {
-
+  //states for GoodRead Api calls
   const [input, setInput] = useState("");
+  const [resultsForGood, setResults] = useState([])
 
-  const [results, setResults] = useState([])
+
+  //States for NEw Yrok Times BestSellers Api
+  const [bestList, setList] = useState([])
+
+  useEffect(() => {
+    const apiCallBest = async (e) => {
+      const response = await axios('https://api.nytimes.com/svc/books/v3/lists/overview.json?api-key=sJ7v7xRwG0tQ9Z3wxgHJVmvRqPeKrIea')
+      console.log(response)
+      return (response)
+    }
+    apiCallBest()
+  }, [])
+
+
 
   // api call for book search
 
   const apiCall = async (e) => {
     e.preventDefault()
     const response = await axios(`https://corsanywhere.herokuapp.com/https://www.goodreads.com/search.xml?key=ybeFDV188bV1sTPf7xemw&q=${input}`)
-
-    console.log(response)
     const resJSON = convert.xml2json(response.data, { compact: true, spaces: 4 })
     console.log(JSON.parse(resJSON))
     const parseRes = JSON.parse(resJSON)
-
     setResults(parseRes.GoodreadsResponse.search.results.work)
-
-    console.log(results)
-
-    // const bookName = parseRes.GoodreadsResponse.search.results.work[0].best_book.title._text
-    // console.log(bookName)
-
+    console.log(resultsForGood)
   }
-
-
-  // const addPlus = string => {
-  //   newKeyword = string
-  // }
-
-
-
-  // const apiCallBest = async () => {
-  //   const response = await axios('https://api.nytimes.com/svc/books/v3/lists/current/{list}.json')
-
-  //   return (response)
-
-  // }
-  // apiCallBest()
 
 
 
@@ -72,22 +64,31 @@ function App() {
         <button onClick={apiCall}>Go</button>
       </form>
 
-      <div>
-        <h1>Daily Read</h1>
-      </div>
+
+
+      <Route exact path='/'>
+        <DailyRead />
+      </Route>
+
+
+      <Route exact path='/'>
+        <BestSeller />
+      </Route>
 
       <div>
-        <Route path='/'>
-          {results.length && <Redirect to='/searchlist' />}
+
+
+        <Route exact path='/'>
+          {resultsForGood.length && <Redirect to='/searchlist' />}
         </Route>
 
 
-        <Route path='/searchlist'>
-          <SearchList results={results} />
+        <Route exact path='/searchlist'>
+          <SearchList results={resultsForGood} />
         </Route>
 
         <Route path="/Details/:index" component={Details} >
-          <Details results={results} />
+          <Details results={resultsForGood} />
         </Route>
 
 
