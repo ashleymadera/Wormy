@@ -20,8 +20,9 @@ function App() {
   useEffect(() => {
     const apiCallBest = async (e) => {
       const response = await axios('https://api.nytimes.com/svc/books/v3/lists/overview.json?api-key=sJ7v7xRwG0tQ9Z3wxgHJVmvRqPeKrIea')
-      console.log(response)
-      return (response)
+      console.log(response.data)
+      setList(response.data.results.lists[3])
+      // console.log(bestList)
     }
     apiCallBest()
   }, [])
@@ -71,12 +72,12 @@ function App() {
       </Route>
 
 
-      <Route exact path='/'>
-        <BestSeller />
-      </Route>
+
+      <BestSeller />
+
+
 
       <div>
-
 
         <Route exact path='/'>
           {resultsForGood.length && <Redirect to='/searchlist' />}
