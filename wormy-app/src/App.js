@@ -21,7 +21,7 @@ function App() {
     const apiCallBest = async (e) => {
       const response = await axios('https://api.nytimes.com/svc/books/v3/lists/overview.json?api-key=sJ7v7xRwG0tQ9Z3wxgHJVmvRqPeKrIea')
       console.log(response.data)
-      setList(response.data.results.lists[3])
+      setList(response.data.results.lists[3].books)
       // console.log(bestList)
     }
     apiCallBest()
@@ -73,7 +73,7 @@ function App() {
 
 
 
-      <BestSeller />
+      <BestSeller results={bestList} />
 
 
 
