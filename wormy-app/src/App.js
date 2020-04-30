@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios'
-import { Route, Redirect } from 'react-router-dom'
+import { Link, Route, Redirect } from 'react-router-dom'
 import convert from 'xml-js'
 import BestSeller from './components/BestSeller';
 import SearchList from './components/SearchList';
 import Details from './components/Details'
 import DailyRead from './components/DailyRead';
+import SeeMore from './components/SeeMore'
 
 
 function App() {
   //states for GoodRead Api calls
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState('');
   const [resultsForGood, setResults] = useState([])
 
-
-  //States for NEw Yrok Times BestSellers Api
+  //States for New Yrok Times BestSellers Api
   const [bestList, setList] = useState([])
 
   useEffect(() => {
@@ -26,8 +26,6 @@ function App() {
     }
     apiCallBest()
   }, [])
-
-
 
   // api call for book search
 
@@ -41,23 +39,21 @@ function App() {
     console.log(resultsForGood)
   }
 
-
-
   return (
     <>
       <header>
-        {/* <img src="https://imgur.com/8cIyLoo" alt="Wormy Logo" /> */}
-        <h1>Wormy</h1>
+        <img src='//i.imgur.com/8cIyLoo.png'
+          alt='Wormy Logo'
+          height='155px'
+          width='110px' />
+
+        <Link to='/' > <h1>Wormy</h1></Link>
       </header>
 
-      <div>
-
-      </div>
       <form >
-
         <input
-          type="text"
-          placeholder="Search"
+          type='text'
+          placeholder='Search'
           value={input}
           onChange={e => setInput(e.target.value)}
         >
@@ -65,32 +61,32 @@ function App() {
         <button onClick={apiCall}>Go</button>
       </form>
 
-
-
       <Route exact path='/'>
         <DailyRead />
       </Route>
 
-
-
-      <BestSeller results={bestList} />
-
-
+      <Route exact path='/'>
+        <BestSeller results={bestList} />
+      </Route>
 
       <div>
-
-        <Route exact path='/'>
+        <Route
+          exact path='/'>
           {resultsForGood.length && <Redirect to='/searchlist' />}
         </Route>
-
 
         <Route exact path='/searchlist'>
           <SearchList results={resultsForGood} />
         </Route>
 
-        <Route path="/Details/:index" component={Details} >
+        <Route path='/Details/:index' component={Details} >
           <Details results={resultsForGood} />
         </Route>
+
+        <Route path='/SeeMore/:index' component={SeeMore} >
+          <SeeMore results={bestList} />
+        </Route>
+
 
 
       </div>

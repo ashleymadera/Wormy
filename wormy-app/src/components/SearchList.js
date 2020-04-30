@@ -13,6 +13,8 @@ function SearchList(props) {
         <div>
           <img
             src={result.best_book.small_image_url._text}
+            height='155px'
+            width='110px'
           />
           <Link to={`/Details/${index}`} >
             <h2>{result.best_book.title._text}</h2></Link>

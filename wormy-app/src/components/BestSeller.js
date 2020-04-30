@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react'
 import axios from 'axios'
+import { Link } from "react-router-dom";
+
 // import { withRouter, Link } from "react-router-dom"
 function BestSeller(props) {
 
@@ -8,10 +10,16 @@ function BestSeller(props) {
     <>
 
       <h1>New York Times Best BestSeller</h1>
-      {props.results.map((result) =>
+      {props.results.map((result, index) =>
         <div>
-          <h3>{result.title}</h3>
-          <img src={result.book_image} />
+          <Link to={`/SeeMore/${index}`}>
+            <img
+              src={result.book_image}
+              height='155px'
+              width='110px' />
+          </Link>
+
+
         </div>
 
 

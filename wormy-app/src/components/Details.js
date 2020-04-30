@@ -8,7 +8,12 @@ function Details(props) {
 
   return (
     <>
-      <img src={props.results[index].best_book.image_url._text} alt="" />
+      <img
+        src={props.results[index].best_book.image_url._text}
+        alt="book cover"
+        height='155px'
+        width='110px'
+      />
       <h2>{props.results[index].best_book.title._text}</h2>
       <h4>{props.results[index].best_book.author.name._text}</h4>
     </>
