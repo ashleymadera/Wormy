@@ -55,8 +55,6 @@ img{
 
 form{
   display: flex;
-
- 
   justify-content: flex-end;
 }
 
@@ -97,11 +95,6 @@ button{
 .weekly-text{
   padding:35px
 }
-
-
-
-
-/* border: 1px solid #c1708c; */
 
 /* for Bestseller.js */
 
@@ -164,8 +157,6 @@ button{
   color: black;
 }
 
-
-
 /* for seemore.js */
 .more-box{
 display: flex;
@@ -217,12 +208,6 @@ display: flex;
      align-items: center;
      justify-content: center;
    }
-   
-
-
-
-
-
 
 }
 

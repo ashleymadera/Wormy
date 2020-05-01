@@ -28,9 +28,7 @@ function App() {
   useEffect(() => {
     const apiCallWeekly = async (e) => {
       const response = await axios('https://api.nytimes.com/svc/books/v3/lists/overview.json?api-key=sJ7v7xRwG0tQ9Z3wxgHJVmvRqPeKrIea')
-      console.log(response.data)
       setWeekly(response.data.results.lists[10].books[0])
-      console.log(weekly)
     }
     apiCallWeekly()
   }, [])
@@ -40,9 +38,7 @@ function App() {
   useEffect(() => {
     const apiCallBest = async (e) => {
       const response = await axios('https://api.nytimes.com/svc/books/v3/lists/overview.json?api-key=sJ7v7xRwG0tQ9Z3wxgHJVmvRqPeKrIea')
-      console.log(response.data)
       setList(response.data.results.lists[3].books)
-      // console.log(bestList)
     }
     apiCallBest()
   }, [])
@@ -53,10 +49,9 @@ function App() {
     e.preventDefault()
     const response = await axios(`https://corsanywhere.herokuapp.com/https://www.goodreads.com/search.xml?key=ybeFDV188bV1sTPf7xemw&q=${input}`)
     const resJSON = convert.xml2json(response.data, { compact: true, spaces: 4 })
-    console.log(JSON.parse(resJSON))
     const parseRes = JSON.parse(resJSON)
     setResults(parseRes.GoodreadsResponse.search.results.work)
-    console.log(resultsForGood)
+
   }
 
   return (
@@ -126,9 +121,6 @@ function App() {
         <Route path='/SeeMore/:index' component={SeeMore} >
           <SeeMore results={bestList} />
         </Route>
-
-
-
       </div>
     </>
   );

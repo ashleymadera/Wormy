@@ -5,9 +5,7 @@ import { Details } from './Details'
 
 function SearchList(props) {
 
-  // const bookName = parseRes.GoodreadsResponse.search.results.work[0].best_book.title.text
   return (
-
 
     <div className='searchlist'>
       {props.results.map((result, index) =>

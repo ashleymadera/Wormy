@@ -1,16 +1,9 @@
 import React, { useEffect } from 'react'
-
 import { Link } from "react-router-dom";
 import { render } from '@testing-library/react';
 
 
-
-
 function BestSeller(props) {
-
-
-
-
 
   return (
     <div
