@@ -6,7 +6,10 @@ const Search = (props) =>
       <form style={props.style} >
         <input
           type="text"
-          placeholder='Search' />
+          placeholder='Search'
+          onChange={props.onChange}
+          value={props.input}
+        />
       </form></div>
   )
 export default Search

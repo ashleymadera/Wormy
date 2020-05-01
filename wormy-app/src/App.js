@@ -7,6 +7,7 @@ import SearchList from './components/SearchList';
 import Details from './components/Details'
 import WeeklyRead from './components/WeeklyRead';
 import SeeMore from './components/SeeMore'
+import Search from './components/Search'
 import "./App.css"
 
 
@@ -50,7 +51,9 @@ function App() {
     const response = await axios(`https://corsanywhere.herokuapp.com/https://www.goodreads.com/search.xml?key=ybeFDV188bV1sTPf7xemw&q=${input}`)
     const resJSON = convert.xml2json(response.data, { compact: true, spaces: 4 })
     const parseRes = JSON.parse(resJSON)
+    console.log(parseRes.GoodreadsResponse.search.results.work)
     setResults(parseRes.GoodreadsResponse.search.results.work)
+
 
   }
 
@@ -72,13 +75,10 @@ function App() {
         <Route exact path='/'>
           <div className='header-form'>
             <form >
-              <input
-                type='text'
-                placeholder='Search'
-                value={input}
+              <Search
                 onChange={e => setInput(e.target.value)}
-              >
-              </input>
+                value={input}
+              />
               <button onClick={apiCall}>Go</button>
             </form></div>
         </Route>

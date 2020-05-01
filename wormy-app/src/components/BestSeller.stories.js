@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react'; import BestSeller from './BestSeller';
-
+import StoryRouter from 'storybook-react-router';
 
 const style = {
   display: 'flex',
@@ -14,8 +14,10 @@ const style = {
 
 
 storiesOf('BestSeller', module)
-
+  .addDecorator(StoryRouter())
   .add('Bestseller', () => <BestSeller
     style={style}
+
+    results={[{ book_image: 'https://i.imgur.com/8cIyLoo.png' }, { book_image: 'https://i.imgur.com/8cIyLoo.png' }]}
 
   />)
