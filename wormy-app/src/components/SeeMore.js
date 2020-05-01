@@ -8,28 +8,28 @@ function SeeMore(props) {
 
 
   return (
-    <div>
+    <div className='more-box'>
 
       <img
         src={props.results[index].book_image}
         alt="book cover"
-        height='155px'
-        width='110px'
+        height='185px'
+        width='140px'
       />
 
 
-      <div>
-        <h2>{props.results[index].title}</h2>
+      <div className='more-text'>
+        <h3>{props.results[index].title}</h3>
         <h4>{props.results[index].author}</h4>
         <p>{props.results[index].description}</p>
 
         <h3>How to purchase</h3>
 
-
-        <a className='aTag' href={props.results[index].buy_links[0].url} >Amazon</a>
-        <a className='aTag' href={props.results[index].buy_links[1].url} >Apple Books</a>
-        <a className='aTag' href={props.results[index].buy_links[2].url} >Barnes and Noble</a>
-
+        <div className='buyTag'>
+          <a className='aTag' href={props.results[index].buy_links[0].url} >Amazon</a>
+          <a className='aTag' href={props.results[index].buy_links[1].url} >Apple Books</a>
+          <a className='aTag' href={props.results[index].buy_links[2].url} >Barnes and Noble</a>
+        </div>
 
       </div>
 

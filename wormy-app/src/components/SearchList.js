@@ -8,21 +8,22 @@ function SearchList(props) {
   // const bookName = parseRes.GoodreadsResponse.search.results.work[0].best_book.title.text
   return (
 
-    <>
+
+    <div className='searchlist'>
       {props.results.map((result, index) =>
-        <div>
+        <div className='list-items'>
           <img
             src={result.best_book.small_image_url._text}
-            height='155px'
-            width='110px'
+            height='170px'
+            width='125px'
           />
           <Link to={`/Details/${index}`} >
-            <h2>{result.best_book.title._text}</h2></Link>
+            <h3 className="search-h3">{result.best_book.title._text}</h3></Link>
         </div>
-
-
       )}
-    </>
+
+    </div>
+
 
 
   )

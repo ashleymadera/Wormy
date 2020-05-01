@@ -5,17 +5,37 @@ import convert from 'xml-js'
 import BestSeller from './components/BestSeller';
 import SearchList from './components/SearchList';
 import Details from './components/Details'
-import DailyRead from './components/DailyRead';
+import WeeklyRead from './components/WeeklyRead';
 import SeeMore from './components/SeeMore'
+import "./App.css"
 
 
 function App() {
-  //states for GoodRead Api calls
+  //States for GoodRead Api calls
   const [input, setInput] = useState('');
   const [resultsForGood, setResults] = useState([])
 
-  //States for New Yrok Times BestSellers Api
+  //States for New York Times BestSellers list box
   const [bestList, setList] = useState([])
+
+
+  //States for New York Times BestSellers Daily Read
+
+  const [weekly, setWeekly] = useState({})
+
+  //api call for book search
+
+  useEffect(() => {
+    const apiCallWeekly = async (e) => {
+      const response = await axios('https://api.nytimes.com/svc/books/v3/lists/overview.json?api-key=sJ7v7xRwG0tQ9Z3wxgHJVmvRqPeKrIea')
+      console.log(response.data)
+      setWeekly(response.data.results.lists[10].books[0])
+      console.log(weekly)
+    }
+    apiCallWeekly()
+  }, [])
+
+  // api call for bestsellers
 
   useEffect(() => {
     const apiCallBest = async (e) => {
@@ -42,32 +62,52 @@ function App() {
   return (
     <>
       <header>
-        <img src='//i.imgur.com/8cIyLoo.png'
-          alt='Wormy Logo'
-          height='155px'
-          width='110px' />
+        <div className='header-box'>
+          <div>
+            <img src='//i.imgur.com/8cIyLoo.png'
+              alt='Wormy Logo'
+              height='155px'
+              width='110px' />
+          </div>
+          <div>
+            <Link to='/' > <h1>Wormy</h1></Link>
+          </div>
+        </div>
 
-        <Link to='/' > <h1>Wormy</h1></Link>
+        <Route exact path='/'>
+          <div className='header-form'>
+            <form >
+              <input
+                type='text'
+                placeholder='Search'
+                value={input}
+                onChange={e => setInput(e.target.value)}
+              >
+              </input>
+              <button onClick={apiCall}>Go</button>
+            </form></div>
+        </Route>
+
+
       </header>
 
-      <form >
-        <input
-          type='text'
-          placeholder='Search'
-          value={input}
-          onChange={e => setInput(e.target.value)}
-        >
-        </input>
-        <button onClick={apiCall}>Go</button>
-      </form>
+
+
+      {/* Search Bar*/}
+
+
+      {/* Home page components */}
 
       <Route exact path='/'>
-        <DailyRead />
+        <WeeklyRead results={weekly} />
       </Route>
 
       <Route exact path='/'>
         <BestSeller results={bestList} />
       </Route>
+
+
+      {/* Detail and redirect components */}
 
       <div>
         <Route
