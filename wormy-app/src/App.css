@@ -41,7 +41,6 @@ h1, h2{
 color: #c1708c;
 font-family: 'Chewy', cursive;
 
-
 }
 
 a{
@@ -71,6 +70,7 @@ button{
   height: 35px;
   width: 35px;
   border-radius: 10px;
+  background-color:  #c1708c;
 }
 
 /* for weeklyread.js */
